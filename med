@@ -1,0 +1,21 @@
+text=""
+escape_char=$(printf "\u1b")
+IFS=
+while true; do
+  read -rsn1 key # get 1 character
+    if [[ $key == $escape_char ]]; then
+      read -rsn2 key # read 2 more chars
+    fi
+  case $key in
+      '[A') tput cuu1 ;;
+      '[B') tput cud1 ;;
+      '[D') tput cub1 ;;
+      '[C') tput cuf1 ;;
+      '') printf " " ;;
+      *) tput rc
+         tput el1
+         tput sc
+         text="$text""$key"
+         printf "$text" ;;
+  esac
+done
