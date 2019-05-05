@@ -1,3 +1,8 @@
+if [ "$1" == "" ]; then
+	file="untitled"
+else
+	file="$1"
+fi
 text=""
 escape_char=$(printf "\u1b")
 IFS=
@@ -16,6 +21,7 @@ while true; do
          tput el1
          tput sc
          text="$text""$key"
+         echo "$text" > "$file"
          printf "$text" ;;
   esac
 done
