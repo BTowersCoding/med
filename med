@@ -5,7 +5,7 @@ else
 fi
 text=""
 escape_char=$(printf "\u1b")
-IFS=
+IFS=''
 while true; do
   read -rsn1 key # get 1 character
     if [[ $key == $escape_char ]]; then
@@ -16,7 +16,12 @@ while true; do
       '[B') tput cud1 ;;
       '[D') tput cub1 ;;
       '[C') tput cuf1 ;;
-      '') printf " " ;;
+      '') tput rc
+         tput el1
+         tput sc
+         text="$text"$'\n'
+         echo "$text" > "$file"
+         printf "$text" ;;
       *) tput rc
          tput el1
          tput sc
