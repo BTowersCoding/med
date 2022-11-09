@@ -13,3 +13,7 @@ I'm considering writing it 3 different ways:
 2. In pure C, by emitting VT100 escape codes like the [kilo editor](https://github.com/antirez/kilo). Since I'm already quite familiar with the code it may be easier for me than learning curses. It's also pretty cool that it doesn't use any external libraries.
 
 3. Doing it all in Bash with `tput`. Seems ridiculous, but may actually be the most simple way and fits the use case rather well... since the whole point is to look like you're never leaving your Bash workflow, might as well not ever leave it!
+
+Coming back to this 4 years later:
+
+The answer is none of the above. Use [JLine](https://github.com/jline/jline3), like [Rebel Readline](https://github.com/bhauman/rebel-readline/). It's probably the only practical way to make it work across platforms. 4 years ago I didn't care about that, but Microsoft actually seems to be playing very nicely so Windows has become almost usable!
